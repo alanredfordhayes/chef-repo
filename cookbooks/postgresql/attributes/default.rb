@@ -19,6 +19,7 @@ when 'rhel'
     when '7.2.1511', '7.3.1611', '7.4.1708', '7.1.1503'
       default['postgresql']['packages'] = ['postgresql-server', 'postgresql-contrib']
       default['postgresql']['shell']['initdb'] = 'postgresql-setup initdb'
+      default['postgresql']['data'] = '/var/lib/pgsql/data'
     end
   when 'oracle'
     case node['platform_version']
