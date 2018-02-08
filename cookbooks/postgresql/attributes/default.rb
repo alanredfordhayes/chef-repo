@@ -20,7 +20,7 @@ when 'rhel'
       default['postgresql']['packages'] = ['postgresql-server', 'postgresql-contrib']
       default['postgresql']['shell']['initdb'] = 'postgresql-setup initdb'
       default['postgresql']['data'] = '/var/lib/pgsql/data'
-      default['postgresql']['pg_hba']['path'] = '/var/lib/pgsql/data/pg_hba.conf'
+      default['postgresql']['path']['pg_hba'] = '/var/lib/pgsql/data/pg_hba.conf'
       default['postgresql']['pg_hba']['orginal'] = ' ident'
       default['postgresql']['pg_hba']['replacement'] = ' md5'
     end

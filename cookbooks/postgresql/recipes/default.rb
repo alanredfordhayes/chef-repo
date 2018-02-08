@@ -54,15 +54,24 @@ end
 
 
 def file_open_filter (file1, src1, rep1)
-  if File.exits?(file1) then
-    f = File.read(file1, mode='r')
-    filter = f.gsub(src1, rep1)
-    f.close()
-    return filter
+  if File.exist?(file1) then
+    f = File.read(file1)
+    if f.include?(src1) then
+      filter = f.gsub(src1, rep1)
+      return filter
+    end
   end
 end
 
+
+def file_write (data1, file1)
+  f = File.open(file1, 'w')
+  f.write(data1)
+  f.close()
+end
+
+
 package_install node['postgresql']['packages']
 postgresql_initdb node['postgresql']['data']
-capture = file_open_filter node['postgresql']['pg_hba'] , node['postgresql']['pg_hba']['orginal'], node['postgresql']['pg_hba']['replacement']
-puts capture
+capture1 = file_open_filter node['postgresql']['path']['pg_hba'], node['postgresql']['pg_hba']['orginal'], node['postgresql']['pg_hba']['replacement']
+file_write capture1, node['postgresql']['path']['pg_hba']
