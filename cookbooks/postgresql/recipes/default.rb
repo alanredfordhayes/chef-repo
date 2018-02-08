@@ -64,5 +64,5 @@ def file_open_filter (file1, src1, rep1)
 
 package_install node['postgresql']['packages']
 postgresql_initdb node['postgresql']['data']
-capture = file_open_filter default['postgresql']['pg_hba'] , default['postgresql']['pg_hba']['orginal'], default['postgresql']['pg_hba']['replacement']
+capture = file_open_filter node['postgresql']['pg_hba'] , node['postgresql']['pg_hba']['orginal'], node['postgresql']['pg_hba']['replacement']
 puts capture
