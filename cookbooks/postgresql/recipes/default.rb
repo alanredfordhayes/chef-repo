@@ -5,6 +5,10 @@
 # Copyright:: 2018, The Authors, All Rights Reserved.
 
 
+
+
+
+
 def package_install_single (name)
   installer = package "#{name}" do action :install end
   return installer
@@ -48,5 +52,17 @@ def postgresql_initdb (dir1)
   end
 end
 
+
+def file_open_filter (file1, src1, rep1)
+  if File.exits?(file1) then
+    f = File.read(file1, mode='r')
+    filter = f.gsub(src1, rep1)
+    f.close()
+    return filter
+  end
+
+
 package_install node['postgresql']['packages']
 postgresql_initdb node['postgresql']['data']
+capture = file_open_filter default['postgresql']['pg_hba'] , default['postgresql']['pg_hba']['orginal'], default['postgresql']['pg_hba']['replacement']
+puts capture
