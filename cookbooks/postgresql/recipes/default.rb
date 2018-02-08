@@ -60,7 +60,7 @@ def file_open_filter (file1, src1, rep1)
     f.close()
     return filter
   end
-
+end
 
 package_install node['postgresql']['packages']
 postgresql_initdb node['postgresql']['data']
