@@ -7,9 +7,9 @@ provisioner:
 
 platforms:
   - name: win2012r2
-  driver:
-    box: win-2012r2-standard-amd64-nocm
-    box_url: opentable/win-2012r2-standard-amd64-nocm 
+    driver:
+      box: opentable/win-2012r2-standard-amd64-nocm
+      box_url: opentable/win-2012r2-standard-amd64-nocm 
 
 
 suites:
