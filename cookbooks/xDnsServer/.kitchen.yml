@@ -1,0 +1,19 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: win2012r2
+  driver:
+    box: win-2012r2-standard-amd64-nocm
+    box_url: opentable/win-2012r2-standard-amd64-nocm 
+
+
+suites:
+  - name: default
+    run_list:
+      - recipe[xDnsServer::default]
+    attributes:
