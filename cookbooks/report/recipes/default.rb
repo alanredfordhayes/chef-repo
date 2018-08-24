@@ -19,13 +19,13 @@ when 'rhel'
     docker_tag 'private repo tag for powercli:1.0.0' do
         target_repo 'vmware/powerclicore'
         target_tag 'latest'
-        to_repo 'localhost:5043/powercli'
+        to_repo 'localhost/powercli'
         to_tag '1.0.0'
         action :tag
     end
 
     docker_container 'powershel_ls' do
-        repo 'localhost:5043/powercli'
+        repo 'localhost/powercli'
         tag '1.0.0'
         command 'ls'
         action :run
