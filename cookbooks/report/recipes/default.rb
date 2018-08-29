@@ -24,6 +24,7 @@ when 'rhel'
         action :tag
     end
 
+<<<<<<< HEAD
     docker_volume 'log'
     docker_volume 'scripts'
     docker_volume 'data'
@@ -48,9 +49,17 @@ when 'rhel'
         repo 'localhost/powercli'
         entrypoint "/usr/bin/pwsh"
         volumes ['scripts:/tmp/scripts:ro', 'data:/tmp/data/management:ro', 'log:/tmp/log:rw']
+=======
+    docker_container 'powershel_ls' do
+        repo 'localhost/powercli'
+>>>>>>> fa6ad130d9332d07b19c819c6a73e6321aa2e9cb
         tag '1.0.0'
         command '/tmp/scripts/get-vm.ps1'
         action :run
     end
+<<<<<<< HEAD
 
 end
+=======
+end
+>>>>>>> fa6ad130d9332d07b19c819c6a73e6321aa2e9cb
