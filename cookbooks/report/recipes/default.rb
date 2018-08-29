@@ -19,15 +19,38 @@ when 'rhel'
     docker_tag 'private repo tag for powercli:1.0.0' do
         target_repo 'vmware/powerclicore'
         target_tag 'latest'
-        to_repo 'localhost:5043/powercli'
+        to_repo 'localhost/powercli'
         to_tag '1.0.0'
         action :tag
     end
 
-    docker_container 'powershel_ls' do
-        repo 'localhost:5043/powercli'
+    docker_volume 'log'
+    docker_volume 'scripts'
+    docker_volume 'data'
+
+    file 'get-vm.ps1' do
+        path '/var/lib/docker/volumes/scripts/_data/get-vm.ps1'
+        mode '0755'
+        owner 'root'
+        group 'root'
+        action :create
+    end
+
+    file 'connection.csv' do
+        path '/var/lib/docker/volumes/data/_data/connection.csv'
+        mode '0755'
+        owner 'root'
+        group 'root'
+        action :create
+    end
+
+    docker_container 'powercli_getvm' do
+        repo 'localhost/powercli'
+        entrypoint "/usr/bin/pwsh"
+        volumes ['scripts:/tmp/scripts:ro', 'data:/tmp/data/management:ro', 'log:/tmp/log:rw']
         tag '1.0.0'
-        command 'ls'
+        command '/tmp/scripts/get-vm.ps1'
         action :run
     end
+
 end
