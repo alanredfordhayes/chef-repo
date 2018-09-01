@@ -24,10 +24,9 @@ when 'rhel'
         action :tag
     end
 
-    docker_container 'powershel_ls' do
-        repo 'localhost/powercli'
-        tag '1.0.0'
-        command 'ls'
-        action :run
+    %w{scripts logs}.each do |vol|
+    	docker_volume vol do
+		action :create
+	end
     end
 end
