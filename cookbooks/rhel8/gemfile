@@ -1,8 +1,0 @@
-source "https://rubygems.org"
-
-gem "test-kitchen"
-gem "vagrant" 
-gem "kitchen-vagrant"
-gem "inspec"
-gem "kitchen-inspec"
-gem "berkshelf"
